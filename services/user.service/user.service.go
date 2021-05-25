@@ -5,7 +5,7 @@ import (
 	user_repository "admin-server/repositories/user.repository"
 )
 
-func Create(user models.User) error {
+func Create(user *models.User) error {
 
 	if err := user_repository.Create(user); err != nil {
 		return err

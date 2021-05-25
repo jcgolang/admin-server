@@ -1,28 +1,19 @@
 package main
 
 import (
-	"admin-server/database"
-	"admin-server/models"
-	userService "admin-server/services/user.service"
-	"fmt"
-	"time"
+	db "admin-server/database"
+	"admin-server/routes"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	fmt.Println("Backend Server 'AdminPro'")
 
-	user := models.User{
-		Name:      "José Palma",
-		Email:     "jcpalma@correo.com",
-		Password:  "123456",
-		Status:    "A",
-		CreatedAt: time.Now().Unix(),
-		Role:      "ADMIN_ROLE",
-	}
+	db.Connect()
+	defer db.Disconnect()
 
-	if err := userService.Create(user); err != nil {
-		fmt.Printf("No se pudo crear el usario:\n%s\n", err)
-	}
+	app := fiber.New()
+	routes.Setup(app)
 
-	defer database.Disconnect()
+	app.Listen(":3001")
 }

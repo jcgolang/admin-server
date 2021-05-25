@@ -14,13 +14,13 @@ func TestCreate(t *testing.T) {
 	user := models.User{
 		Name:      "José Palma",
 		Email:     "jcpalma@correo.com",
-		Password:  "123456",
+		Password:  []byte("123456"),
 		Status:    "A",
 		CreatedAt: time.Now().Unix(),
 		Role:      "ADMIN_ROLE",
 	}
 
-	if err := userService.Create(user); err != nil {
+	if err := userService.Create(&user); err != nil {
 		t.Error("La prueba de creación de usuario a fallado.")
 		t.Error(err)
 		t.Fail()
