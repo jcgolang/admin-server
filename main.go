@@ -9,8 +9,7 @@ import (
 
 func main() {
 
-	db.Connect()
-	defer db.Disconnect()
+	defer db.GetManager().Disconnect()
 
 	app := fiber.New()
 	routes.Setup(app)

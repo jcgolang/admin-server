@@ -17,21 +17,21 @@ const (
 )
 
 type User struct {
-	Id        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	Name      string             `bson:"name" json:"name"`
-	Email     string             `bson:"email" json:"email"`
-	Password  []byte             `bson:"password" json:"password"`
-	Image     string             `bson:"img,omitempty" json:"img"`
-	Role      Role               `bson:"role" json:"role"`
-	Google    bool               `bson:"google,omitempty" json:"google"`
-	Status    Status             `bson:"status" json:"status"`
-	CreatedAt int64              `bson:"created_at" json:"createdOn"`
-	UpdateBy  primitive.ObjectID `bson:"updated_by,omitempty" json:"updatedBy"`
-	UpdatedAt int64              `bson:"updated_at,omitempty" json:"updatedOn"`
-	DeletedAt int64              `bson:"deleted_at,omitempty" json:"deletedOn"`
+	Id        *primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	Name      string              `bson:"name" json:"name,omitempty"`
+	Email     string              `bson:"email" json:"email,omitempty"`
+	Password  []byte              `bson:"password" json:"password,omitempty"`
+	Image     string              `bson:"img,omitempty" json:"img,omitempty"`
+	Role      Role                `bson:"role" json:"role,omitempty"`
+	Google    bool                `bson:"google,omitempty" json:"google,omitempty"`
+	Status    Status              `bson:"status" json:"status,omitempty"`
+	CreatedAt int64               `bson:"created_at" json:"createdOn,omitempty"`
+	UpdateBy  *primitive.ObjectID `bson:"updated_by,omitempty" json:"updatedBy,omitempty"`
+	UpdatedAt int64               `bson:"updated_at,omitempty" json:"updatedOn,omitempty"`
+	DeletedAt int64               `bson:"deleted_at,omitempty" json:"deletedOn,omitempty"`
 }
 
-type Users []User
+type Users []*User
 
 func NewUser() *User {
 	return &User{
