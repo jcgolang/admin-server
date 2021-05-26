@@ -70,8 +70,10 @@ func (r *Repository) GetUsers() (*models.Users, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer cursor.Close(r.ctx)
 
 	users := &models.Users{}
+	// TODO: Cambiar a una iteración con for cursor.Next(r.ctx)
 	if err := cursor.All(r.ctx, users); err != nil {
 		return nil, err
 	}
